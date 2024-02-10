@@ -1,0 +1,58 @@
+{
+    "homes" : [
+        {
+            "id" : 1,
+            "title" : "خانه ویلایی",
+            "roomCount" : 3,
+            "price" : 4500000,
+            "img" : "/img/house-1.jpeg",
+            "meterage" : 250
+
+        },
+        {
+            "id" : 2,
+            "title" : "باغ",
+            "roomCount" : 6,
+            "price" : 9000000,
+            "img" : "/img/house-2.jpeg",
+            "meterage" : 2000
+
+        },
+        {
+            "id" : 3,
+            "title" : "فروش مسکونی",
+            "roomCount" : 4,
+            "price" : 6300000,
+            "img" : "/img/house-3.jpeg",
+            "meterage" : 170
+
+        },
+        {
+            "id" : 4,
+            "title" : "اجاره آپارتمان",
+            "roomCount" : 2,
+            "price" : 1500000,
+            "img" : "/img/house-4.jpeg",
+            "meterage" : 75
+
+        },
+        {
+            "id" : 5,
+            "title" : "خانه ویلایی",
+            "roomCount" : 3,
+            "price" : 3400000,
+            "img" : "/img/house-5.jpeg",
+            "meterage" : 300
+
+        },
+        {
+            "id" : 6,
+            "title" : "فروش ویلایی",
+            "roomCount" : 5,
+            "price" : 7500000,
+            "img" : "/img/house-6.jpeg",
+            "meterage" : 320
+
+        }
+    ]
+}
