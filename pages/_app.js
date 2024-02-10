@@ -103,7 +103,8 @@ export default function App({ Component, pageProps }) {
           </div>
         </div>
       </div>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
+
       <footer className="footer">
         <ul className="nav">
           <li className="nav__item">
