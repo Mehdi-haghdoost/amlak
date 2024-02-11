@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 function singleHomeDetailsPage() {
 
   const route = useRouter()
-  const homeId = +(route.query.id)
+  const homeId = +(route.query.id) 
 
   const home = db.homes.find(home => home.id === homeId)
 
@@ -46,11 +46,11 @@ function singleHomeDetailsPage() {
                 <span>{home?.roomCount}</span>
               </li>
               <li>
-                <span>متراژ</span>
+                <span>متراژ :</span>
                 <span>{home?.meterage}</span>
               </li>
               <li>
-                <span>سال ساخت</span>
+                <span>سال ساخت :</span>
                 <span>{home?.createage}</span>
               </li>
             </ul>
