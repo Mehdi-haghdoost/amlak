@@ -4,18 +4,19 @@ import Home from '@/components/modules/Home'
 
 function index() {
 
-  const [searchValue,setSearchValue] = useState('');
-  const [homes,setHomes] = useState([...db.homes])
+  const [searchValue, setSearchValue] = useState('');
+  const [homes, setHomes] = useState([...db.homes])
+  console.log(homes);
   useEffect(() => {
     const newHomes = db.homes.filter(home => home.title.includes(searchValue))
     setHomes(newHomes)
-    
-  },[searchValue])
+
+  }, [searchValue])
 
   return (
-    <div class="home-section" id="houses">
-      <div class="home-filter-search">
-        <div class="home-filter">
+    <div className="home-section" id="houses">
+      <div className="home-filter-search">
+        <div className="home-filter">
           <select name="" id="">
             <option value="" selected>
               انتخاب کنید
@@ -26,28 +27,37 @@ function index() {
             <option value="">بر اساس اندازه</option>
           </select>
         </div>
-        <div class="home-search">
+        <div className="home-search">
           <input type="text" value={searchValue} onChange={(event) => setSearchValue(event.target.value)} placeholder="جستجو کنید" />
         </div>
       </div>
 
-      <div class="homes">
-        {homes.map((home) => (
-          <Home key={home.id} {...home} />
-        ))}
+      <div className="homes">
+        {
+          homes.length === 0 ? (
+            <div className='alert-warning'>هیچ ملکی یافت نشد</div>
+          ) : (
+            <>
+              {homes.map((home) => (
+                <Home key={home.id} {...home} />
+              ))}
+            </>
+          )
+        }
+
       </div>
 
-      <ul class="pagination__list">
-        <li class="pagination__item">
-          <a href="#" class=""></a>
+      <ul className="pagination__list">
+        <li className="pagination__item">
+          <a href="#" className=""></a>
         </li>
-        <li class="pagination__item">
-          <a href="#" class="">
+        <li className="pagination__item">
+          <a href="#" className="">
             2
           </a>
         </li>
-        <li class="pagination__item active">
-          <a href="#" class="">
+        <li className="pagination__item active">
+          <a href="#" className="">
             1
           </a>
         </li>
