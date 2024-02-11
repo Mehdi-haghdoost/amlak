@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import db from './../../data/db'
 import Home from '@/components/modules/Home'
 
 function index() {
+
+  const [searchValue,setSearchValue] = useState('');
+  const [homes,setHomes] = useState([...db.homes])
+  useEffect(() => {
+    const newHomes = db.homes.filter(home => home.title.includes(searchValue))
+    setHomes(newHomes)
+    
+  },[searchValue])
+
   return (
     <div class="home-section" id="houses">
       <div class="home-filter-search">
@@ -18,12 +27,12 @@ function index() {
           </select>
         </div>
         <div class="home-search">
-          <input type="text" placeholder="جستجو کنید" />
+          <input type="text" value={searchValue} onChange={(event) => setSearchValue(event.target.value)} placeholder="جستجو کنید" />
         </div>
       </div>
 
       <div class="homes">
-        {db.homes.map((home) => (
+        {homes.map((home) => (
           <Home key={home.id} {...home} />
         ))}
       </div>
