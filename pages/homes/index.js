@@ -6,15 +6,17 @@ function index() {
 
   const [searchValue, setSearchValue] = useState('');
   const [homes, setHomes] = useState([...db.homes])
-  const [orderedHomes, setOrderedHomes] = useState([])
   const [status, setStatus] = useState('-1')
   const [page, setPage] = useState(1)
+
 
   useEffect(() => {
     switch (status) {
       case 'money': {
         const newHomes = [...homes].sort((a, b) => a.price - b.price)
         setHomes(newHomes)
+
+        console.log('newHomes =>', newHomes);
         break;
       }
       case 'room': {
@@ -40,14 +42,25 @@ function index() {
 
   }, [searchValue])
 
-  const paginateHandler = (event,page) => {
-    event.preventDefault() ;
-    console.log('next Page =>' , page);
-    console.log('hi');
+  const paginateHandler = (event, page) => {
+    event.preventDefault();
     setPage(page)
 
+    let pageSize = 3
+    let endIndex = pageSize * page
+    console.log('endIndex =>', endIndex);
 
+    let startIndex = endIndex - pageSize
+    console.log('startIndex =>', startIndex);
+
+    let arr = db.homes.slice(startIndex, endIndex)
+    console.log('arr =>', arr);
+
+    setHomes(arr)
+    
   }
+
+
 
   return (
     <div className="home-section" id="houses">
@@ -74,7 +87,7 @@ function index() {
             <div className='alert-warning'>هیچ ملکی یافت نشد</div>
           ) : (
             <>
-              {homes.map((home) => (
+              {homes.slice(0, 3).map((home) => (
                 <Home key={home.id} {...home} />
               ))}
             </>
@@ -87,8 +100,8 @@ function index() {
         {
           Array.from({ length: Math.ceil(db.homes.length / 3) }).map((item, index) => (
             <li className={index + 1 === page ? "pagination__item active" : "pagination__item"}
-            onClick={(event) => paginateHandler(event, index + 1)}
-            key={index + 1}
+              onClick={(event) => paginateHandler(event, index + 1)}
+              key={index + 1}
             >
               <a href="#"
                 className="">
