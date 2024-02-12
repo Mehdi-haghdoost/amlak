@@ -7,7 +7,7 @@ function index() {
   const [searchValue, setSearchValue] = useState('');
   const [homes, setHomes] = useState([...db.homes])
   const [orderedHomes, setOrderedHomes] = useState([])
-  const [status, setStatus] = useState('default')
+  const [status, setStatus] = useState('-1')
 
   useEffect(() => {
     switch (status) {
