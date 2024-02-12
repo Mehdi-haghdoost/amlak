@@ -8,6 +8,7 @@ function index() {
   const [homes, setHomes] = useState([...db.homes])
   const [orderedHomes, setOrderedHomes] = useState([])
   const [status, setStatus] = useState('-1')
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     switch (status) {
@@ -43,7 +44,7 @@ function index() {
     event.preventDefault() ;
     console.log('next Page =>' , page);
     console.log('hi');
-
+    setPage(page)
 
 
   }
@@ -85,7 +86,7 @@ function index() {
       <ul className="pagination__list">
         {
           Array.from({ length: Math.ceil(db.homes.length / 3) }).map((item, index) => (
-            <li className="pagination__item"
+            <li className={index + 1 === page ? "pagination__item active" : "pagination__item"}
             onClick={(event) => paginateHandler(event, index + 1)}
             key={index + 1}
             >
