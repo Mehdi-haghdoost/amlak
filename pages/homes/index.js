@@ -12,19 +12,19 @@ function index() {
   useEffect(() => {
     switch (status) {
       case 'money': {
-        const newHomes = [...homes].sort((a,b) => a.price -b.price)
+        const newHomes = [...homes].sort((a, b) => a.price - b.price)
         setHomes(newHomes)
-        break ;
+        break;
       }
       case 'room': {
-        const newHomes = [...homes].sort((a,b) => a.roomCount -b.roomCount)
+        const newHomes = [...homes].sort((a, b) => a.roomCount - b.roomCount)
         setHomes(newHomes)
-        break ;
+        break;
       }
       case 'meterage': {
-        const newHomes = [...homes].sort((a,b) => a.meterage -b.meterage)
+        const newHomes = [...homes].sort((a, b) => a.meterage - b.meterage)
         setHomes(newHomes)
-        break ;
+        break;
       }
       default: {
         setHomes([...db.homes])
@@ -38,6 +38,15 @@ function index() {
     setHomes(newHomes)
 
   }, [searchValue])
+
+  const paginateHandler = (event,page) => {
+    event.preventDefault() ;
+    console.log('next Page =>' , page);
+    console.log('hi');
+
+
+
+  }
 
   return (
     <div className="home-section" id="houses">
@@ -74,19 +83,19 @@ function index() {
       </div>
 
       <ul className="pagination__list">
-        <li className="pagination__item">
-          <a href="#" className=""></a>
-        </li>
-        <li className="pagination__item">
-          <a href="#" className="">
-            2
-          </a>
-        </li>
-        <li className="pagination__item active">
-          <a href="#" className="">
-            1
-          </a>
-        </li>
+        {
+          Array.from({ length: Math.ceil(db.homes.length / 3) }).map((item, index) => (
+            <li className="pagination__item"
+            onClick={(event) => paginateHandler(event, index + 1)}
+            key={index + 1}
+            >
+              <a href="#"
+                className="">
+                {index + 1}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   )
