@@ -9,12 +9,15 @@ function index() {
   const [status, setStatus] = useState('-1')
   const [page, setPage] = useState(1)
 
+  const [orderedHomes, setOrderedHomes] = useState(null)
+
 
   useEffect(() => {
     switch (status) {
       case 'money': {
         const newHomes = [...homes].sort((a, b) => a.price - b.price)
         setHomes(newHomes)
+        setOrderedHomes(newHomes)
 
         console.log('newHomes =>', newHomes);
         break;
@@ -22,15 +25,20 @@ function index() {
       case 'room': {
         const newHomes = [...homes].sort((a, b) => a.roomCount - b.roomCount)
         setHomes(newHomes)
+        setOrderedHomes(newHomes)
+
         break;
       }
       case 'meterage': {
         const newHomes = [...homes].sort((a, b) => a.meterage - b.meterage)
         setHomes(newHomes)
+        setOrderedHomes(newHomes)
+
         break;
       }
       default: {
         setHomes([...db.homes])
+
       }
     }
 
@@ -53,11 +61,11 @@ function index() {
     let startIndex = endIndex - pageSize
     console.log('startIndex =>', startIndex);
 
-    let arr = db.homes.slice(startIndex, endIndex)
+    let arr = orderedHomes.slice(startIndex, endIndex)
     console.log('arr =>', arr);
 
     setHomes(arr)
-    
+
   }
 
 
@@ -67,7 +75,7 @@ function index() {
       <div className="home-filter-search">
         <div className="home-filter">
           <select defaultValue={status} onChange={(e) => setStatus(e.target.value)}>
-            <option value="-1" selected>
+            <option value="-1">
               انتخاب کنید
             </option>
             <option value="money" >بر اساس قیمت</option>
